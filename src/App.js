@@ -14,7 +14,7 @@ function App() {
         setUsers(
           data.results.map((u) => ({
             id: u.login.uuid,
-            name: u.name.first + u.name.last,
+            name: `${u.name.first} ${u.name.last}`,
             age: u.dob.age,
             image: u.picture.large,
             email: u.email,
@@ -28,25 +28,26 @@ function App() {
       });
   }, []);
 
-  if (usersLoaded && users.length === 0) {
-    return <p>No users found</p>;
-  }
-
   return (
     <div>
       <h1>Users</h1>
-      <ul>
-        {users.map((u) => (
-          <li key={u.id}>
-            <UserTile
-              name={u.name}
-              image={u.image}
-              age={u.age}
-              email={u.email}
-            />
-          </li>
-        ))}
-      </ul>
+      <button>Sort By Name</button>
+      {!usersLoaded && <p>Loading users...</p>}
+      {usersLoaded && users.length === 0 && <p>No users found</p>}
+      {usersLoaded && users.length > 0 && (
+        <ul style={{ listStyleType: "none", margin: 0, padding: 0 }}>
+          {users.map((u) => (
+            <li key={u.id}>
+              <UserTile
+                name={u.name}
+                image={u.image}
+                age={u.age}
+                email={u.email}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

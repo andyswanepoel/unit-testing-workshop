@@ -197,7 +197,7 @@ const mockSuccessResponse = {
 const mockEmptyResponse = { results: [] };
 
 describe("User list", () => {
-  beforeEach(() => {
+  afterEach(() => {
     fetch.mockClear();
   });
 
@@ -206,7 +206,8 @@ describe("User list", () => {
       Promise.resolve({ json: () => Promise.resolve(mockSuccessResponse) })
     );
     render(<App />);
-    await screen.findAllByAltText(/profile picture/gi);
+    const users = await screen.findAllByAltText(/profile picture/);
+    expect(users).toHaveLength(5);
   });
 
   test("should display 'No users found' when list is empty", async () => {
@@ -214,12 +215,45 @@ describe("User list", () => {
       Promise.resolve({ json: () => Promise.resolve(mockEmptyResponse) })
     );
     render(<App />);
-    await screen.findByText(/no users found/i);
+    expect(await screen.findByText(/no users found/i)).toBeInTheDocument();
   });
 
   test("should display 'No users found' when api call fails", async () => {
     fetch.mockImplementationOnce(() => Promise.reject("API failed"));
     render(<App />);
-    await screen.findByText(/no users found/i);
+    expect(await screen.findByText(/no users found/i)).toBeInTheDocument();
+  });
+});
+
+describe("User list sorting", () => {
+  afterEach(() => {
+    fetch.mockClear();
+  });
+
+  test("should be sorted in ascending order when sort button is clicked", async () => {
+    fetch.mockImplementationOnce(() =>
+      Promise.resolve({ json: () => Promise.resolve(mockSuccessResponse) })
+    );
+    render(<App />);
+
+    const users = await screen.findAllByRole("heading", { level: 2 });
+    const userNames = users.map((user) => user.textContent);
+    const sortedUserNames = userNames.map((x) => x).sort();
+    expect(userNames).toEqual(sortedUserNames);
+  });
+
+  test("should be sorted in descending order when sort button is clicked twice", async () => {
+    fetch.mockImplementationOnce(() =>
+      Promise.resolve({ json: () => Promise.resolve(mockSuccessResponse) })
+    );
+    render(<App />);
+
+    const users = await screen.findAllByRole("heading", { level: 2 });
+    const userNames = users.map((userName) => userName.textContent);
+    const sortedUserNames = userNames
+      .map((x) => x)
+      .sort()
+      .reverse();
+    expect(userNames).toEqual(sortedUserNames);
   });
 });
