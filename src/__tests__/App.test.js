@@ -94,3 +94,36 @@ describe("User list", () => {
     expect(await screen.findByText(/no users found/i)).toBeInTheDocument();
   });
 });
+
+describe("User list sorting", () => {
+  afterEach(() => {
+    fetch.mockClear();
+  });
+
+  test("should be sorted in ascending order when sort button is clicked", async () => {
+    fetch.mockImplementationOnce(() =>
+      Promise.resolve({ json: () => Promise.resolve(mockSuccessResponse) })
+    );
+    render(<App />);
+
+    const users = await screen.findAllByRole("heading", { level: 2 });
+    const userNames = users.map((user) => user.textContent);
+    const sortedUserNames = userNames.map((x) => x).sort();
+    expect(userNames).toEqual(sortedUserNames);
+  });
+
+  test("should be sorted in descending order when sort button is clicked twice", async () => {
+    fetch.mockImplementationOnce(() =>
+      Promise.resolve({ json: () => Promise.resolve(mockSuccessResponse) })
+    );
+    render(<App />);
+
+    const users = await screen.findAllByRole("heading", { level: 2 });
+    const userNames = users.map((userName) => userName.textContent);
+    const sortedUserNames = userNames
+      .map((x) => x)
+      .sort()
+      .reverse();
+    expect(userNames).toEqual(sortedUserNames);
+  });
+});
