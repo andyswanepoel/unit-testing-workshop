@@ -9,6 +9,7 @@
 - If no users are loaded, sort button will be disabled
 - Clicking sort button once will sort users in ascending by first name
 - Clicking sort button again will sort users in descending by first name
+- Sorting button should be disabled if no users found
 
 ## Data Fetching
 
