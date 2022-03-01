@@ -3,8 +3,14 @@ const UserTile = ({ name, image, age, email }) => {
     <div>
       <h2>{name}</h2>
       <img src={image} alt={name + " profile picture"} />
-      <p>Email: {email}</p>
-      <p>Age: {age} years</p>
+      <p>
+        <strong>Email:</strong> <br />
+        {email}
+      </p>
+      <p>
+        <strong>Age:</strong> <br />
+        {age} years
+      </p>
     </div>
   );
 };
