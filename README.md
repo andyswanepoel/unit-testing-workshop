@@ -1,5 +1,7 @@
 # Unit Testing Workshop
 
+This repo is to supplement the [Unit Testing Presentation](https://docs.google.com/presentation/d/16Zuz1wXtSQDExzK09ythvGTne-WJu-ecd1up2kG0M3U/edit).
+
 There are currently 8 branches within the repo. Each is at the **completed** stage for that task.
 | Repo | Description |
 |---------------------------------|----------------------------------------------|
