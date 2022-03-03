@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import { daysUntilBirthday } from "./daysUntilBirthday";
 import UserTile from "./components/UserTile";
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             id: u.login.uuid,
             name: `${u.name.first} ${u.name.last}`,
             age: u.dob.age,
+            dob: u.dob.date,
             image: u.picture.large,
             email: u.email,
           }))
@@ -73,6 +75,7 @@ function App() {
                 image={u.image}
                 age={u.age}
                 email={u.email}
+                days={daysUntilBirthday(u.dob)}
               />
             </li>
           ))}

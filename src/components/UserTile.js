@@ -1,4 +1,4 @@
-const UserTile = ({ name, image, age, email }) => {
+const UserTile = ({ name, image, age, email, days }) => {
   return (
     <div>
       <h2>{name}</h2>
@@ -11,6 +11,7 @@ const UserTile = ({ name, image, age, email }) => {
         <strong>Age:</strong> <br />
         {age} years
       </p>
+      <p>Next birthday: {days} days</p>
     </div>
   );
 };
