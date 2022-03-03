@@ -50,7 +50,9 @@ function App() {
   return (
     <div>
       <h1>Users</h1>
-      <button onClick={handleSort}>Sort By Name</button>
+      <button disabled={usersLoaded && users.length === 0} onClick={handleSort}>
+        Sort By Name
+      </button>
       {!usersLoaded && <p>Loading users...</p>}
       {usersLoaded && users.length === 0 && <p>No users found</p>}
       {usersLoaded && users.length > 0 && (
