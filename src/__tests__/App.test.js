@@ -101,28 +101,18 @@ describe("User list sorting", () => {
     fetch.mockClear();
   });
 
-  test("button should be disabled if no users found", async () => {
-    fetch.mockImplementationOnce(() =>
-      Promise.resolve({ json: () => Promise.resolve(mockEmptyResponse) })
-    );
-    render(<App />);
-    expect(await screen.findByText(/no users found/i)).toBeInTheDocument();
-    const sortBtn = screen.getByRole("button", { name: /sort by name/i });
-    expect(sortBtn).toBeDisabled();
-  });
-
   test("should be sorted in ascending order when sort button is clicked", async () => {
     fetch.mockImplementationOnce(() =>
       Promise.resolve({ json: () => Promise.resolve(mockSuccessResponse) })
     );
     render(<App />);
 
+    const sortBtn = screen.getByRole("button", { name: /sort by name/i });
     userEvent.click(sortBtn);
 
     const sortedUserNames = mockSuccessResponse.results
       .map((u) => u.name.first + " " + u.name.last)
       .sort();
-    const sortBtn = screen.getByRole("button", { name: /sort by name/i });
 
     const users = await screen.findAllByRole("heading", { level: 2 });
     const userNames = users.map((user) => user.textContent);
