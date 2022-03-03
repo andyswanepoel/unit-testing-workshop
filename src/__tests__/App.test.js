@@ -1,10 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import App from "../App";
 
-jest.mock("../daysUntilBirthday", () => ({
-  daysUntilBirthday: () => 123,
-}));
-
 global.fetch = jest.fn();
 
 // Don't need the full response, just the data we use
