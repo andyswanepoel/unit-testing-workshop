@@ -117,11 +117,12 @@ describe("User list sorting", () => {
     );
     render(<App />);
 
+    userEvent.click(sortBtn);
+
     const sortedUserNames = mockSuccessResponse.results
       .map((u) => u.name.first + " " + u.name.last)
       .sort();
     const sortBtn = screen.getByRole("button", { name: /sort by name/i });
-    userEvent.click(sortBtn);
 
     const users = await screen.findAllByRole("heading", { level: 2 });
     const userNames = users.map((user) => user.textContent);
@@ -135,14 +136,14 @@ describe("User list sorting", () => {
     );
     render(<App />);
 
+    const sortBtn = screen.getByRole("button", { name: /sort by name/i });
+    userEvent.click(sortBtn);
+    userEvent.click(sortBtn);
+
     const sortedUserNames = mockSuccessResponse.results
       .map((u) => u.name.first + " " + u.name.last)
       .sort()
       .reverse();
-
-    const sortBtn = screen.getByRole("button", { name: /sort by name/i });
-    userEvent.click(sortBtn);
-    userEvent.click(sortBtn);
 
     const users = await screen.findAllByRole("heading", { level: 2 });
     const userNames = users.map((userName) => userName.textContent);
