@@ -24,7 +24,7 @@ You can bootstrap a new React project using `create-react-app`:
 
 ### Step 1 - Requirements
 
-- Create some requirements for you application
+- Create some requirements for the application
 - See the completed [requirements document](https://github.com/andyswanepoel/unit-testing-workshop/blob/step-1-requirements/REQUIREMENTS.md)
 
 ### Step 2 - Write tests for user display
