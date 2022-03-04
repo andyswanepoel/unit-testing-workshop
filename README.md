@@ -36,7 +36,7 @@ You can bootstrap a new React project using `create-react-app`:
 
 ### Step 3 - Write code for user display test to pass
 
-- Build your application to make the tests pass
+- Write your application code to make the tests pass
 - See the completed [app code](https://github.com/andyswanepoel/unit-testing-workshop/blob/step-3-user-list-tests-pass/src/App.js)
 
 ### Step 4 - Write tests for sorting users
@@ -48,7 +48,7 @@ You can bootstrap a new React project using `create-react-app`:
 
 ### Step 5 - Write code for sorting users test to pass
 
-- Build your application to make the tests pass
+- Write your application code to make the tests pass
 - See the completed [app code](https://github.com/andyswanepoel/unit-testing-workshop/blob/step-5-user-sorting-tests-pass/src/App.js)
 
 ### Step 6 - Write tests for disabling sort button
@@ -57,9 +57,9 @@ You can bootstrap a new React project using `create-react-app`:
   - Button should be disabled is no users loaded
 - See the completed [test code](https://github.com/andyswanepoel/unit-testing-workshop/blob/step-6-disable-button-tests/src/__tests__/App.test.js#L99)
 
-### Step 7 - Write code for user display test to pass
+### Step 7 - Write code for disabling sort button test to pass
 
-- Build your application to make the tests pass
+- Write your application code to make the test pass
 - See the completed [app code](https://github.com/andyswanepoel/unit-testing-workshop/blob/step-7-disable-button-test-pass/src/App.js)
 
 ## Running the completed project
